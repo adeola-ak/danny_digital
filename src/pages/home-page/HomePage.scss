@@ -1,0 +1,76 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.bg-video-container {
+	height: 100vh;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+
+	video {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: auto;
+		width: auto;
+		z-index: -1;
+		transform: translateX(-50%) translateY(-50%);
+		min-width: 100%;
+		min-height: 100%;
+	}
+}
+/* @media screen and (max-width: 800px) {
+	video {
+		min-width: unset;
+		min-height: unset;
+		height: 100vh;
+		width: 100%;
+	}
+} */
+
+.overlay {
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	background-image: linear-gradient(
+		45deg,
+		rgba(0, 0, 0, 0.3) 50%,
+		rgba(0, 0, 0, 0.7) 50%
+	);
+	background-size: 3px 3px;
+	/* z-index: 2; */
+}
+
+.enter-btn {
+	margin-bottom: 100px;
+	padding: 0 20px;
+	@media screen and (max-width: 800px) {
+		display: none;
+	}
+
+	h1 {
+		animation: flicker2 0.1s infinite alternate ease-in-out;
+		text-align: center;
+		color: #fff;
+	}
+}
+@keyframes flicker2 {
+	90% {
+		opacity: 0.1;
+		text-shadow: 0 0 0.05em var(--c1), 0 0 0.1em var(--c2),
+			calc(var(--shift) * 1) calc(var(--shift) * 1)
+				calc(var(--spread) / 50) var(--c1),
+			calc(var(--shift) * -1) calc(var(--shift) * -1)
+				calc(var(--spread) / 50) var(--c1),
+			calc(var(--shift) * 1) calc(var(--shift) * -1)
+				calc(var(--spread) / 50) var(--c1),
+			calc(var(--shift) * -1) calc(var(--shift) * 1)
+				calc(var(--spread) / 50) var(--c1),
+			0 0 0 var(--base), 0 0 0 var(--base);
+	}
+}
