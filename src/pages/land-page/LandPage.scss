@@ -1,0 +1,73 @@
+.container {
+	height: 100vh;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+
+	video {
+		position: absolute;
+		object-fit: contain;
+		top: 50%;
+		left: 50%;
+		height: auto;
+		width: auto;
+		z-index: -1;
+		transform: translateX(-50%) translateY(-50%);
+		min-width: 100%;
+		min-height: 100%;
+	}
+
+	.btn-container {
+		text-align: center;
+		margin-bottom: 15%;
+
+		.button {
+			width: 100px;
+			height: 45px;
+			font-family: "Roboto", sans-serif;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 2.5px;
+			font-weight: 500;
+			color: #000;
+			background-color: #fff;
+			border: none;
+			border-radius: 50px;
+			box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease 0s;
+			outline: none;
+
+			&:hover {
+				// background-color: black;
+				// box-shadow: 0px 5px 10px #fff;
+				// transform: translateY(-7px);
+				letter-spacing: 6.5px;
+			}
+
+			p {
+				animation: flicker2 0.1s infinite alternate ease-in-out;
+				text-align: center;
+				color: black;
+			}
+		}
+	}
+}
+
+@keyframes flicker2 {
+	90% {
+		opacity: 0.1;
+		text-shadow: 0 0 0.05em var(--c1), 0 0 0.1em var(--c2),
+			calc(var(--shift) * 1) calc(var(--shift) * 1)
+				calc(var(--spread) / 50) var(--c1),
+			calc(var(--shift) * -1) calc(var(--shift) * -1)
+				calc(var(--spread) / 50) var(--c1),
+			calc(var(--shift) * 1) calc(var(--shift) * -1)
+				calc(var(--spread) / 50) var(--c1),
+			calc(var(--shift) * -1) calc(var(--shift) * 1)
+				calc(var(--spread) / 50) var(--c1),
+			0 0 0 var(--base), 0 0 0 var(--base);
+	}
+}
