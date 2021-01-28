@@ -1,22 +1,25 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./HomePage.scss";
 
 const Homepage = () => {
 	return (
-		<div className="bg-video-container">
-			<video
-				src="https://res.cloudinary.com/dusr8fbuo/video/upload/v1611391881/DIGITAL_DRIP_1_jhwwcq.mp4"
-				loop
-				autoPlay
-				playsInline
-				preload
-				muted
-			></video>
-			<div className="overlay"></div>
-			<button className="enter-btn">
-				<h1>ENTER</h1>
-			</button>
-		</div>
+		<Fragment>
+			<div className="container">
+				<video
+					src="https://res.cloudinary.com/dusr8fbuo/video/upload/q_auto:best/v1611781922/digital_mobile.mp4"
+					loop
+					autoPlay
+					playsInline
+					preload
+					muted
+				></video>
+				<div className="btn-container">
+					<button className="enter-btn">
+						<p>ENTER</p>
+					</button>
+				</div>
+			</div>
+		</Fragment>
 	);
 };
 

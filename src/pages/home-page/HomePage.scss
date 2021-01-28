@@ -1,9 +1,9 @@
-body {
-	margin: 0;
-	padding: 0;
-}
+// body {
+// 	margin: 0;
+// 	padding: 0;
+// }
 
-.bg-video-container {
+.container {
 	height: 100vh;
 	width: 100%;
 	position: relative;
@@ -14,6 +14,7 @@ body {
 
 	video {
 		position: absolute;
+		object-fit: contain;
 		top: 50%;
 		left: 50%;
 		height: auto;
@@ -23,42 +24,26 @@ body {
 		min-width: 100%;
 		min-height: 100%;
 	}
-}
-/* @media screen and (max-width: 800px) {
-	video {
-		min-width: unset;
-		min-height: unset;
-		height: 100vh;
-		width: 100%;
-	}
-} */
 
-.overlay {
-	width: 100%;
-	height: 100vh;
-	position: absolute;
-	background-image: linear-gradient(
-		45deg,
-		rgba(0, 0, 0, 0.3) 50%,
-		rgba(0, 0, 0, 0.7) 50%
-	);
-	background-size: 3px 3px;
-	/* z-index: 2; */
-}
-
-.enter-btn {
-	margin-bottom: 100px;
-	padding: 0 20px;
-	@media screen and (max-width: 800px) {
-		display: none;
-	}
-
-	h1 {
-		animation: flicker2 0.1s infinite alternate ease-in-out;
+	.btn-container {
+		background-color: black;
 		text-align: center;
-		color: #fff;
+		margin-bottom: 80px;
+
+		.enter-btn {
+			margin: 0 auto;
+			background-color: white;
+			border: none;
+
+			p {
+				animation: flicker2 0.1s infinite alternate ease-in-out;
+				text-align: center;
+				color: black;
+			}
+		}
 	}
 }
+
 @keyframes flicker2 {
 	90% {
 		opacity: 0.1;
