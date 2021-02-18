@@ -5,9 +5,7 @@ import "./HomePage.scss";
 const HomePage = () => {
 	return (
 		<Fragment>
-			<div className="overlay" id="overlay">
-				{/* <Navbar /> */}
-			</div>
+			<Navbar />
 		</Fragment>
 	);
 };
