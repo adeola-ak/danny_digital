@@ -1,246 +1,121 @@
-import React, { useEffect, useState } from "react";
-import "./Navbar.scss";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import Logo from "../assets/Logo";
 
-const Navbar = (props) => {
-	const [menuOpen, setMenuOpen] = useState(false);
-
-	const handleMenuClick = () => {
-		setMenuOpen(!menuOpen);
-	};
-
-	const handleLinkClick = () => {
-		setMenuOpen(false);
-	};
-
-	const styles = {
-		container: {
-			position: "absolute",
-			top: 0,
-			left: 0,
-			zIndex: "99",
-			opacity: 0.9,
-			display: "flex",
-			alignItems: "center",
-			background: "black",
-			width: "100%",
-			color: "white",
-			fontFamily: "Lobster",
-		},
-		logo: {
-			margin: "0 auto",
-		},
-		body: {
-			display: "flex",
-			flexDirection: "column",
-			alignItems: "center",
-			width: "100vw",
-			height: "100vh",
-			filter: menuOpen ? "blur(2px)" : null,
-			transition: "filter 0.5s ease",
-		},
-	};
-
-	const menu = ["about", "photos", "videos", "press", "contact"];
-	const menuItems = menu.map((value, index) => {
-		return (
-			<MenuItem
-				key={index}
-				delay={`${index * 0.1}s`}
-				onClick={() => {
-					handleLinkClick();
-				}}
-			>
-				{value}
-			</MenuItem>
-		);
-	});
-
+const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 	return (
-		<div>
-			<div style={styles.container}>
-				<MenuButton
-					open={menuOpen}
-					onClick={() => {
-						handleMenuClick();
-					}}
-					color="white"
-				/>
-				<div style={styles.logo}>Logo</div>
-			</div>
-			<Menu open={menuOpen}>{menuItems}</Menu>
-			<div style={styles.body}></div>
-		</div>
-	);
-};
-
-const MenuItem = (props) => {
-	const [hover, setHover] = useState(false);
-
-	const handleHover = () => {
-		setHover(!hover);
-	};
-
-	console.log(props);
-	const styles = {
-		container: {
-			opacity: 0,
-			animation: "1s appear forwards",
-			animationDelay: props.delay,
-		},
-		menuItem: {
-			fontFamily: `'Open Sans', sans-serif`,
-			fontSize: "1.2rem",
-			padding: "1rem 0",
-			margin: "0 5%",
-			cursor: "pointer",
-			color: hover ? "gray" : "#fafafa",
-			transition: "color 0.2s ease-in-out",
-			animation: "0.5s slideIn forwards",
-			animationDelay: props.delay,
-		},
-		line: {
-			width: "90%",
-			height: "1px",
-			background: "gray",
-			margin: "0 auto",
-			animation: "0.5s shrink forwards",
-			animationDelay: props.delay,
-		},
-	};
-
-	return (
-		<div styles={styles.container}>
-			<div
-				style={styles.menuItem}
-				onMouseEnter={() => {
-					handleHover();
-				}}
-				onMouseLeave={() => {
-					handleHover();
-				}}
-				onClick={props.handleMenuClick}
-			>
-				{props.children}
-			</div>
-			<div style={styles.line}></div>
-		</div>
-	);
-};
-
-const Menu = (props) => {
-	console.log("this is props passed down", props);
-	const [open, setOpen] = useState(props.open ? props.open : false);
-
-	const styles = {
-		container: {
-			position: "absolute",
-			top: 0,
-			left: 0,
-			height: open ? "100%" : 0,
-			width: "100vw",
-			display: "flex",
-			flexDirection: "column",
-			background: "black",
-			opacity: 0.95,
-			color: "#fafafa",
-			transition: "height 0.3s ease",
-			zIndex: 2,
-		},
-		menuList: {
-			paddingTop: "3rem",
-		},
-	};
-
-	return (
-		<div style={styles.container}>
-			{open ? <div style={styles.menuList}>{props.children}</div> : null}{" "}
-		</div>
-	);
-};
-
-const MenuButton = (props) => {
-	const [open, setOpen] = useState(props.open ? props.open : false);
-
-	const [color, setColor] = useState(props.color ? props.color : "black");
-
-	// useEffect(() => {
-	// 	console.log("Test");
-	// }, [props.open])
-	// return
-
-	//  useEffect( () => {
-	//       console.log('counter updated');
-	//   }, [props.counter])
-
-	//   componentWillReceiveProps(nextProps) {
-	//   if (nextProps.count !== this.props.count) {
-	//     this.setState({
-	//       count: nextProps.count > 100 ? 100 : nextProps.count
-	//     });
-	//   }
-	// }
-
-	// render() {
-	//   return ( <
-	//     div > {
-	//       this.state.count
-	//     } <
-	//     /div>
-	//   );
-	// }
-
-	const handleClick = () => {
-		setOpen(!props.open);
-	};
-
-	const styles = {
-		container: {
-			height: "32px",
-			width: "32px",
-			display: "flex",
-			flexDirection: "column",
-			justifyContent: "center",
-			alignItems: "center",
-			cursor: "pointer",
-			padding: "4px",
-		},
-		line: {
-			height: "2px",
-			width: "20px",
-			background: color,
-			transition: "all 0.2s ease",
-		},
-		lineTop: {
-			transform: open ? "rotate(45deg)" : "none",
-			transformOrigin: "top left",
-			marginBottom: "5px",
-		},
-		lineMiddle: {
-			opacity: open ? 0 : 1,
-			transform: open ? "translateX(-16px)" : "none",
-		},
-		lineBottom: {
-			transform: open ? "translateX(-1px) rotate(-45deg)" : "none",
-			transformOrigin: "top left",
-			marginTop: "5px",
-		},
-	};
-	return (
-		<div
-			style={styles.container}
-			onClick={
-				props.onClick
-					? props.onClick
-					: () => {
-							handleClick();
-					  }
-			}
+		<Text
+			mb={{ base: isLast ? 0 : 8, sm: 0 }}
+			mr={{ base: 0, sm: isLast ? 0 : 8 }}
+			display="block"
+			{...rest}
 		>
-			<div style={{ ...styles.line, ...styles.lineTop }} />
-			<div style={{ ...styles.line, ...styles.lineMiddle }} />
-			<div style={{ ...styles.line, ...styles.lineBottom }} />
-		</div>
+			<Link to={to}>{children}</Link>
+		</Text>
 	);
 };
 
-export default Navbar;
+const CloseIcon = () => (
+	<svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+		<title>Close</title>
+		<path
+			fill="white"
+			d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
+		/>
+	</svg>
+);
+
+const MenuIcon = () => (
+	<svg
+		width="24px"
+		viewBox="0 0 20 20"
+		xmlns="http://www.w3.org/2000/svg"
+		fill="white"
+	>
+		<title>Menu</title>
+		<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+	</svg>
+);
+
+const Header = (props) => {
+	const [show, setShow] = React.useState(false);
+	const toggleMenu = () => setShow(!show);
+
+	return (
+		<Flex
+			as="nav"
+			align="center"
+			justify="space-between"
+			wrap="wrap"
+			w="100%"
+			mb={8}
+			p={8}
+			bg={["primary.500", "primary.500", "transparent", "transparent"]}
+			color={["white", "white", "primary.700", "primary.700"]}
+			{...props}
+		>
+			<Flex align="center">
+				<Logo
+					w="200px"
+					color={["black", "black", "primary.500", "primary.500"]}
+				/>
+			</Flex>
+
+			<Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
+				{show ? <CloseIcon /> : <MenuIcon />}
+			</Box>
+
+			<Box
+				display={{ base: show ? "block" : "none", md: "block" }}
+				flexBasis={{ base: "100%", md: "auto" }}
+			>
+				<Flex
+					align="center"
+					justify={[
+						"center",
+						"space-between",
+						"flex-end",
+						"flex-end",
+					]}
+					direction={["column", "row", "row", "row"]}
+					pt={[4, 4, 0, 0]}
+				>
+					<MenuItem to="/photos">Photos </MenuItem>
+					<MenuItem to="/videos">Videos </MenuItem>
+					<MenuItem to="/press">Press </MenuItem>
+					<MenuItem to="/book" isLast>
+						<Button
+							size="sm"
+							rounded="md"
+							color={[
+								"primary.500",
+								"primary.500",
+								"white",
+								"white",
+							]}
+							bg={[
+								"white",
+								"white",
+								"primary.500",
+								"primary.500",
+							]}
+							_hover={{
+								bg: [
+									"primary.100",
+									"primary.100",
+									"primary.600",
+									"primary.600",
+								],
+							}}
+						>
+							Book
+						</Button>
+					</MenuItem>
+				</Flex>
+			</Box>
+		</Flex>
+	);
+};
+
+export default Header;

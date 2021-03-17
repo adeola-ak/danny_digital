@@ -2,7 +2,7 @@ import "./App.css";
 import LandPage from "./pages/land-page/LandPage";
 import HomePage from "./pages/home-page/HomePage";
 
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
 	return (

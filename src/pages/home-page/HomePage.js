@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
-import Navbar from "../../components/nav/Navbar";
+import Nav from "../../components/nav/Navbar";
 import "./HomePage.scss";
 
 const HomePage = () => {
 	return (
 		<Fragment>
-			<Navbar />
+			<Nav />
 		</Fragment>
 	);
 };
