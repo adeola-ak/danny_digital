@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import "./LandPage.scss";
 import Fade from "react-reveal/Fade";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const LandPage = () => {
 	return (
