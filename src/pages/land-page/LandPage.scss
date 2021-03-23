@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap");
+
 .container {
 	height: 100vh;
 	width: 100%;
@@ -23,6 +25,14 @@
 	.btn-container {
 		text-align: center;
 		margin-bottom: 15%;
+
+		.coming {
+			font-family: "Raleway", sans-serif;
+			font-size: 40px;
+			animation: flicker2 0.1s infinite alternate ease-in-out;
+			color: #38a2d8;
+			text-shadow: 0px 5px 15px gray;
+		}
 
 		.button {
 			width: 100px;

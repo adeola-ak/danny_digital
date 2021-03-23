@@ -17,11 +17,12 @@ const LandPage = () => {
 				></video>
 				<Fade bottom>
 					<div className="btn-container">
-						<Link to="/home">
+						{/* <Link to="/home">
 							<button className="button">
 								<p>ENTER</p>
 							</button>
-						</Link>
+						</Link> */}
+						<p className="coming">COMING SOON</p>
 					</div>
 				</Fade>
 			</div>
